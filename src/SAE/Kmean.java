@@ -33,10 +33,12 @@ class KMean {
         int Ng = Integer.parseInt(args[0]);
         BufferedImage image = ImageIO.read(new File(args[1]));
          **/
-        int Ng = 3;
+        int Ng = 2;
         BufferedImage image = ImageIO.read(new File("images_diverses_small/animaux/ours.png"));
 
-
+        // initialisation du chronomètre
+        long start = System.currentTimeMillis();
+        System.out.println("start");
         int width = image.getWidth();
         int height = image.getHeight();
         int[] tab = new int[Ng]; // Utiliser un tableau pour stocker les centroides
@@ -101,7 +103,7 @@ class KMean {
                     convergence = false;
                 }
             }
-
+            System.out.println("iteration");
             if (convergence) {
                 carryOn = false;
             }
@@ -109,7 +111,6 @@ class KMean {
 
         // Création de la nouvelle image avec les couleurs réduites
         BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 int rgb = image.getRGB(j, i);
@@ -131,5 +132,6 @@ class KMean {
         ImageIO.write(newImage, "png", outputFile);
 
         System.out.println("Traitement terminé. Le résultat a été enregistré dans le fichier resultat.png.");
+        System.out.println("Temps d'exécution : " + (System.currentTimeMillis() - start) + " ms" + " pour " + Ng + " groupes.");
     }
 }
