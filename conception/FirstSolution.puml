@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+loop
+loop
+
+main -> main: claculerDistance(pixel1, mapItem)
+main --> main: res
+end
+alt res < ecart
+main -> map : put(mapItem, get(mapItem) + 1)
+end
+end
+
+loop pour chaque mapItem
+loop pour chaque casse du tableau
+main -> map : get(mapItem)
+map --> main: res
+main -> tab : tab[i]
+tab --> main: value
+alt res < value
+main -> tab : tab[i] = res
+end
+end
+end
+@enduml
